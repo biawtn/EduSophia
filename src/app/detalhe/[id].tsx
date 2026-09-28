@@ -1,5 +1,8 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+
+import { alternarConclusao, carregarMaterias, type Materia } from '@/storage/materias';
 
 type Bloco = {
   titulo: string;
@@ -13,15 +16,57 @@ const BLOCOS_MATEMATICA: Bloco[] = [
 ];
 
 export default function DetalheScreen() {
-  const { id, titulo } = useLocalSearchParams<{ id: string; titulo: string }>();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const [materia, setMateria] = useState<Materia | null>(null);
+
+
+  useFocusEffect(
+    useCallback(() => {
+      carregarMaterias().then((lista) => {
+        setMateria(lista.find((m) => m.id === id) ?? null);
+      });
+    }, [id])
+  );
+
+  async function marcarStatus() {
+    await alternarConclusao(id);
+    voltar(); 
+  }
+
+  function voltar() {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/');
+    }
+  }
 
   const blocos = id === '1' ? BLOCOS_MATEMATICA : [];
+
+  if (materia === null) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.header}>Meus estudos</Text>
+        <Text style={styles.textSecondary}>Carregando...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Meus estudos</Text>
 
-      <Text style={styles.materiaTitle}>Matéria: {titulo}</Text>
+      <Text style={styles.materiaTitle}>Matéria: {materia.titulo}</Text>
+
+      <View style={[styles.badge, materia.concluida ? styles.badgeOk : styles.badgePendente]}>
+        <Text
+          style={[
+            styles.badgeTexto,
+            materia.concluida ? styles.badgeTextoOk : styles.badgeTextoPendente,
+          ]}>
+          {materia.concluida ? '✓ Concluída' : 'Pendente'}
+        </Text>
+      </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {blocos.length === 0 ? (
@@ -42,7 +87,13 @@ export default function DetalheScreen() {
         )}
       </ScrollView>
 
-      <Pressable style={styles.backButton} onPress={() => router.push('/')}>
+      <Pressable style={styles.statusButton} onPress={marcarStatus}>
+        <Text style={styles.statusButtonText}>
+          {materia.concluida ? 'Desmarcar como concluída' : 'Marcar como concluída'}
+        </Text>
+      </Pressable>
+
+      <Pressable style={styles.backButton} onPress={voltar}>
         <Text style={styles.backButtonText}>Voltar</Text>
       </Pressable>
     </View>
@@ -94,6 +145,40 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     color: '#5B7291',
     fontSize: 13,
+  },
+  badge: {
+    alignSelf: 'flex-start',
+    borderRadius: 20,
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    marginBottom: 14,
+  },
+  badgeOk: {
+    backgroundColor: '#E3F6EA',
+  },
+  badgePendente: {
+    backgroundColor: '#FFF1DC',
+  },
+  badgeTexto: {
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  badgeTextoOk: {
+    color: '#1E8449',
+  },
+  badgeTextoPendente: {
+    color: '#B9770E',
+  },
+  statusButton: {
+    backgroundColor: '#2E7CE0',
+    borderRadius: 12,
+    padding: 14,
+    alignItems: 'center',
+    marginTop: 12,
+  },
+  statusButtonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   backButton: {
     borderWidth: 1.5,
