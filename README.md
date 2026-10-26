@@ -59,3 +59,16 @@ Bloco de notas voltado para organização dos estudos — anotações, contagem 
 
 > [!TIP]
 > Material completo do curso: [PAM I](https://etec-bento-quirino.github.io/Programacao-Aplicativos-Moveis-I/)
+
+
+---
+
+## Colaboração por integrante
+
+> *Excluídos: commits do professor Jackson Sá (wendelmax), `github-actions[bot]` e `dependabot[bot]`. Contagem com base em `git log --no-merges`.*
+
+| # | Integrante | Commits | Participação |
+|---|------------|---------|--------------|
+| 1 | Bianca Noronha | 4 | 100.0% ████████████████████ |
+
+**Total de commits considerados:** 4
