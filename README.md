@@ -73,3 +73,20 @@ Bloco de notas voltado para organização dos estudos — anotações, contagem 
 | 1 | Bianca Noronha | 4 | 100.0% ████████████████████ |
 
 **Total de commits considerados:** 4
+
+## Recurso do dispositivo
+
+Justificativa de não uso: nesta versão o app não utiliza recurso nativo do dispositivo
+(notificação, câmera ou localização). Priorizei consolidar o SQLite como única fonte de dados
+e o CRUD completo (listar, filtrar, adicionar, editar e excluir), com loading, estado vazio e
+tratamento de erros. Como melhoria futura, planejo lembretes de estudo com notificações locais
+(expo-notifications).
+
+## Como rodar e testar
+
+1. Instalar as dependências: `npm install`
+2. Iniciar o projeto: `npx expo start`
+3. Abrir no Expo Go (escanear o QR code) ou no emulador Android.
+4. Para gerar o APK: `eas build -p android --profile preview`
+
+Os dados ficam salvos em SQLite (`expo-sqlite`), no arquivo `src/database/db.ts`.
