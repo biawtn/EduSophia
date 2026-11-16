@@ -4,18 +4,18 @@
 
 ## Nota PAM I — Educa+ (matérias de estudo)
 
-![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=R&color=orange)
+![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=B&color=yellow)
 
-**Nota atual: R** · 34% (34/100 pontos) · rodada de 2026-11-16 10:59:27 · commit `774d002`
+**Nota atual: B** · 74% (74/100 pontos) · rodada de 2026-11-16 11:28:01 · commit `c195d7a`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
 | Fase | Peso | Pontos | Situação |
 |---|---|---|---|
 | Fase 1 — Estrutura | 1x (10 pts) | 10/10 | completa |
-| Fase 2 — AsyncStorage | 1x (15 pts) | 13/15 | em desenvolvimento |
-| Fase 3 — SQLite | 2x (30 pts) | 2/30 | iniciando |
-| Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 9/45 | iniciando |
+| Fase 2 — AsyncStorage | 1x (15 pts) | 15/15 | completa |
+| Fase 3 — SQLite | 2x (30 pts) | 28/30 | em desenvolvimento |
+| Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 21/45 | iniciando |
 
 ## Resumo dos Testes Funcionais (Execução Real em Runtime Node + SQLite)
 
@@ -40,9 +40,9 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** Existe tela de DETALHE — `src/app/detalhe/[id].tsx`
 - [x] **(+1 pts)** Dependências importadas existem no package.json (app não quebra ao abrir) — `todos os imports resolvem`
 - [x] **(+1 pts)** app.json identifica o app (name/slug preenchidos) — `app.json`
-- [x] **(+1 pts)** Projeto tem pelo menos 2 arquivos de tela/código — `6 arquivos de tela`
+- [x] **(+1 pts)** Projeto tem pelo menos 2 arquivos de tela/código — `8 arquivos de tela`
 
-### Fase 2 — Persistência com AsyncStorage (13/15 pts · peso 1x)
+### Fase 2 — Persistência com AsyncStorage (15/15 pts · peso 1x)
 
 - [x] **(+1 pts)** Dependência async-storage está no package.json (ou migrado p/ expo-sqlite) — `no package.json`
 - [x] **(+1 pts)** Existe import do AsyncStorage (ou SQLite) no código — `src/storage/materias.ts`
@@ -51,36 +51,36 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** Existe função de CARREGAR a lista (carregar/load/listar/get) — `src/app/(tabs)/index.tsx`
 - [x] **(+1 pts)** Existe função de ADICIONAR/CADASTRAR (adicionar/salvar/inserir/create) — `src/app/(tabs)/index.tsx`
 - [x] **(+1 pts)** Existe busca por id (buscar/find/getItem/getFirst) — `src/app/detalhe/[id].tsx`
-- [ ] **(+1 pts)** Existe função de EXCLUIR/remover — `—`
+- [x] **(+1 pts)** Existe função de EXCLUIR/remover — `src/database/db.ts`
 - [x] **(+1 pts)** Formulário lê entradas com TextInput — `src/app/adicionar.tsx`
 - [x] **(+1 pts)** Formulário salva chamando adicionar/salvar — `src/app/adicionar.tsx`
 - [x] **(+1 pts)** Lista é alimentada a partir do storage/banco — `src/app/(tabs)/index.tsx`
 - [x] **(+1 pts)** Tela de detalhe usa busca/dados do storage/banco — `src/app/detalhe/[id].tsx`
-- [ ] **(+1 pts)** Exclusão usa confirmação (Alert.alert) — `—`
+- [x] **(+1 pts)** Exclusão usa confirmação (Alert.alert) — `src/screens/MateriasScreen.tsx`
 - [x] **(+1 pts)** Dados iniciais/seed são gravados na 1ª execução — `src/storage/materias.ts`
 - [x] **(+1 pts)** Formulário valida campos (trim/length/vazio) — `src/app/adicionar.tsx`
 
-### Fase 3 — Banco de dados SQLite (2/30 pts · peso 2x)
+### Fase 3 — Banco de dados SQLite (28/30 pts · peso 2x)
 
-- [ ] **(+2 pts)** Dependência expo-sqlite está no package.json — `FALTA instalar: npx expo install expo-sqlite`
-- [ ] **(+2 pts)** Existe import do expo-sqlite — `—`
-- [ ] **(+2 pts)** Existe arquivo de banco de dados — `—`
-- [ ] **(+2 pts)** Cria a tabela com CREATE TABLE IF NOT EXISTS — `—`
-- [ ] **(+2 pts)** Insere dados com INSERT INTO — `—`
-- [ ] **(+2 pts)** Consulta com SELECT — `—`
-- [ ] **(+2 pts)** Atualiza com UPDATE — `—`
-- [ ] **(+2 pts)** Exclui com DELETE FROM — `—`
-- [ ] **(+2 pts)** Usa filtros com WHERE — `—`
-- [ ] **(+2 pts)** Banco aberto com openDatabaseAsync/openDatabaseSync/openDatabase — `—`
-- [ ] **(+2 pts)** Tela de lista carrega dados do banco — `src/app/(tabs)/index.tsx`
-- [ ] **(+2 pts)** Formulário salva no banco (INSERT/runAsync/runSync) — `src/app/adicionar.tsx`
+- [x] **(+2 pts)** Dependência expo-sqlite está no package.json — `no package.json`
+- [x] **(+2 pts)** Existe import do expo-sqlite — `src/database/db.ts`
+- [x] **(+2 pts)** Existe arquivo de banco de dados — `src/database/db.ts`
+- [x] **(+2 pts)** Cria a tabela com CREATE TABLE IF NOT EXISTS — `src/database/db.ts`
+- [x] **(+2 pts)** Insere dados com INSERT INTO — `src/database/db.ts`
+- [x] **(+2 pts)** Consulta com SELECT — `src/database/db.ts`
+- [x] **(+2 pts)** Atualiza com UPDATE — `src/database/db.ts`
+- [x] **(+2 pts)** Exclui com DELETE FROM — `src/database/db.ts`
+- [x] **(+2 pts)** Usa filtros com WHERE — `src/database/db.ts`
+- [x] **(+2 pts)** Banco aberto com openDatabaseAsync/openDatabaseSync/openDatabase — `src/database/db.ts`
+- [x] **(+2 pts)** Tela de lista carrega dados do banco — `src/app/(tabs)/index.tsx`
+- [x] **(+2 pts)** Formulário salva no banco (INSERT/runAsync/runSync) — `src/app/adicionar.tsx`
 - [ ] **(+2 pts)** Detalhe busca no banco com WHERE/SELECT — `src/app/detalhe/[id].tsx`
-- [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `src/storage/materias.ts`
-- [ ] **(+2 pts)** Banco possui dados iniciais (seed inserido em SQL) — `—`
+- [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `src/database/db.ts`
+- [x] **(+2 pts)** Banco possui dados iniciais (seed inserido em SQL) — `src/database/db.ts`
 
-### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (9/45 pts · peso 3x)
+### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (21/45 pts · peso 3x)
 
-- [ ] **(+3 pts)** SQLite exclusivo: fluxo das telas usa SQLite sem depender de AsyncStorage p/ dados críticos — `FALTA migrar telas 100% para SQLite (remover AsyncStorage do CRUD principal)`
+- [x] **(+3 pts)** SQLite exclusivo: fluxo das telas usa SQLite sem depender de AsyncStorage p/ dados críticos — `src/database/db.ts (telas sem AsyncStorage crítico)`
 - [ ] **(+3 pts)** [Teste Funcional SQLite] Banco abre e cria a(s) tabela(s) em memória (CREATE TABLE) — `FALTA criar tabela real no SQLite em execução`
 - [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de ADICIONAR insere registro real no banco (INSERT INTO) — `FALTA função de adicionar gravando registro real no SQLite`
 - [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de LISTAR e FILTRAR retorna dados reais (SELECT + WHERE) — `FALTA consulta SELECT/WHERE funcional no SQLite`
@@ -88,12 +88,12 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de EXCLUIR remove registro do banco (DELETE FROM) — `FALTA função de excluir (DELETE FROM) removendo registro real no SQLite`
 - [ ] **(+3 pts)** Recurso do dispositivo: pacote nativo no package.json (notifications, image-picker, location) ou justificativa — `FALTA instalar expo-notifications / expo-image-picker / expo-location (ou justificar no README)`
 - [ ] **(+3 pts)** Recurso do dispositivo: uso da API nativa no código (notificação, foto ou GPS) ou justificativa — `FALTA integrar recurso do aparelho no código (Aulas 08, 09 ou 10)`
-- [ ] **(+3 pts)** UX: Loading ao carregar a lista do SQLite (ActivityIndicator + estado loading/carregando) — `FALTA ActivityIndicator controlado por useState enquanto lê do SQLite`
+- [x] **(+3 pts)** UX: Loading ao carregar a lista do SQLite (ActivityIndicator + estado loading/carregando) — `src/app/detalhe/[id].tsx (src/screens/MateriasScreen.tsx)`
 - [x] **(+3 pts)** UX: Empty State quando não houver registros (mensagem amigável + ícone/emoji/ilustração) — `src/app/(tabs)/index.tsx`
-- [ ] **(+3 pts)** UX: Mensagem de erro amigável se falhar ao CARREGAR dados (try/catch com feedback) — `FALTA try/catch com mensagem amigável ao falhar ao carregar`
-- [ ] **(+3 pts)** UX: Mensagem de erro amigável e validação se falhar ao SALVAR/EXCLUIR (try/catch + Alert/.trim) — `FALTA try/catch com Alert amigável e validação ao salvar/excluir`
-- [x] **(+3 pts)** Organização do código: separação em pastas por responsabilidade (screens/app, database/data, components) — `pastas: app, components, constants, hooks, storage`
-- [x] **(+3 pts)** Interface consistente: FlatList (keyExtractor + renderItem) e estilização StyleSheet.create — `src/app/(tabs)/index.tsx (12 arquivos com StyleSheet)`
+- [x] **(+3 pts)** UX: Mensagem de erro amigável se falhar ao CARREGAR dados (try/catch com feedback) — `src/screens/MateriasScreen.tsx`
+- [x] **(+3 pts)** UX: Mensagem de erro amigável e validação se falhar ao SALVAR/EXCLUIR (try/catch + Alert/.trim) — `src/screens/MateriasScreen.tsx + validação .trim()`
+- [x] **(+3 pts)** Organização do código: separação em pastas por responsabilidade (screens/app, database/data, components) — `pastas: app, components, constants, database, hooks, screens, storage`
+- [x] **(+3 pts)** Interface consistente: FlatList (keyExtractor + renderItem) e estilização StyleSheet.create — `src/app/(tabs)/index.tsx (13 arquivos com StyleSheet)`
 - [ ] **(+3 pts)** Entrega: repositório limpo (.gitignore sem node_modules) e README com instruções/Expo Go/APK — `FALTA .gitignore ou documentar como rodar/testar (Expo Go/APK) no README.md`
 
 ## Para evoluir a nota

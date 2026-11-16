@@ -3,16 +3,16 @@
 <!-- PAM-CI-NOTA-INICIO -->
 ### Nota atual (automática) — Educa+ (matérias de estudo)
 
-[![CI](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-R-orange)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
+[![CI](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-B-yellow)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
 
-**R** — Regular · **34%** (34/100 pontos) · atualizado em 2026-11-16 10:59
+**B** — Bom · **74%** (74/100 pontos) · atualizado em 2026-11-16 11:28
 
 | Fase | Pontos |
 |------|--------|
 | Fase 1 — Estrutura | 10/10 |
-| Fase 2 — AsyncStorage | 13/15 |
-| Fase 3 — SQLite | 2/30 |
-| Fase 4 — Versão Final (UX e Dispositivo) | 9/45 |
+| Fase 2 — AsyncStorage | 15/15 |
+| Fase 3 — SQLite | 28/30 |
+| Fase 4 — Versão Final (UX e Dispositivo) | 21/45 |
 
 Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
 <!-- PAM-CI-NOTA-FIM -->
