@@ -6,7 +6,7 @@
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=MB&color=green)
 
-**Nota atual: MB** · 85% (85/100 pontos) · rodada de 2026-11-16 12:01:20 · commit `86875e9`
+**Nota atual: MB** · 100% (100/100 pontos) · rodada de 2026-11-16 12:03:01 · commit `e47f1ad`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
@@ -15,17 +15,17 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 | Fase 1 — Estrutura | 1x (10 pts) | 10/10 | completa |
 | Fase 2 — AsyncStorage | 1x (15 pts) | 15/15 | completa |
 | Fase 3 — SQLite | 2x (30 pts) | 30/30 | completa |
-| Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 30/45 | em desenvolvimento |
+| Fase 4 — Versão Final (SQLite + UX + Dispositivo) | 3x (45 pts) | 45/45 | completa |
 
 ## Resumo dos Testes Funcionais (Execução Real em Runtime Node + SQLite)
 
 | Teste Funcional SQLite (Fase 4) | Resultado | Detalhes da Execução |
 |---|---|---|
-| Schema / Inicialização (`CREATE TABLE`) | PENDENTE | Nenhuma tabela SQLite criada em runtime |
-| Adicionar (`INSERT INTO`) | PENDENTE | Não confirmou inserção no SQLite em runtime |
-| Listar + Filtrar (`SELECT` + `WHERE`) | PENDENTE | Não confirmou leitura/filtro no SQLite em runtime |
-| Editar (`UPDATE`) | PENDENTE | Não confirmou atualização no SQLite em runtime |
-| Excluir (`DELETE FROM`) | PENDENTE | Não confirmou exclusão no SQLite em runtime |
+| Schema / Inicialização (`CREATE TABLE`) | PASSOU | Tabelas criadas no SQLite: `materias` |
+| Adicionar (`INSERT INTO`) | PASSOU | Inserção SQLite verificada em memória (`inserts=5` em `materias`) |
+| Listar + Filtrar (`SELECT` + `WHERE`) | PASSOU | Leitura e filtro SQLite verificados (`selects=5, where=5`) |
+| Editar (`UPDATE`) | PASSOU | Atualização SQLite verificada (`updates=1` em `materias`) |
+| Excluir (`DELETE FROM`) | PASSOU | Exclusão SQLite confirmada (`deletes=2` em `materias`) |
 
 ## Checklist validado
 
@@ -78,14 +78,14 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `src/app/(tabs)/index.tsx`
 - [x] **(+2 pts)** Banco possui dados iniciais (seed inserido em SQL) — `src/database/db.ts`
 
-### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (30/45 pts · peso 3x)
+### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (45/45 pts · peso 3x)
 
 - [x] **(+3 pts)** SQLite exclusivo: fluxo das telas usa SQLite sem depender de AsyncStorage p/ dados críticos — `src/database/db.ts (telas sem AsyncStorage crítico)`
-- [ ] **(+3 pts)** [Teste Funcional SQLite] Banco abre e cria a(s) tabela(s) em memória (CREATE TABLE) — `FALTA criar tabela real no SQLite em execução`
-- [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de ADICIONAR insere registro real no banco (INSERT INTO) — `FALTA função de adicionar gravando registro real no SQLite`
-- [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de LISTAR e FILTRAR retorna dados reais (SELECT + WHERE) — `FALTA consulta SELECT/WHERE funcional no SQLite`
-- [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de EDITAR atualiza registro existente no banco (UPDATE) — `FALTA função de editar (UPDATE) alterando registro real no SQLite`
-- [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de EXCLUIR remove registro do banco (DELETE FROM) — `FALTA função de excluir (DELETE FROM) removendo registro real no SQLite`
+- [x] **(+3 pts)** [Teste Funcional SQLite] Banco abre e cria a(s) tabela(s) em memória (CREATE TABLE) — `Tabela(s) criada(s) no motor SQLite: materias`
+- [x] **(+3 pts)** [Teste Funcional SQLite] Fluxo de ADICIONAR insere registro real no banco (INSERT INTO) — `INSERT executado com sucesso no SQLite (5 inserção/ões em materias)`
+- [x] **(+3 pts)** [Teste Funcional SQLite] Fluxo de LISTAR e FILTRAR retorna dados reais (SELECT + WHERE) — `SELECT (5x) + WHERE (5x) validados em materias`
+- [x] **(+3 pts)** [Teste Funcional SQLite] Fluxo de EDITAR atualiza registro existente no banco (UPDATE) — `UPDATE executado e verificado no SQLite (1x em materias)`
+- [x] **(+3 pts)** [Teste Funcional SQLite] Fluxo de EXCLUIR remove registro do banco (DELETE FROM) — `DELETE executado e confirmado no SQLite (2x em materias)`
 - [x] **(+3 pts)** Recurso do dispositivo: pacote nativo no package.json (notifications, image-picker, location) ou justificativa — `justificativa no README.md`
 - [x] **(+3 pts)** Recurso do dispositivo: uso da API nativa no código (notificação, foto ou GPS) ou justificativa — `justificativa no README.md`
 - [x] **(+3 pts)** UX: Loading ao carregar a lista do SQLite (ActivityIndicator + estado loading/carregando) — `src/app/(tabs)/index.tsx (src/app/(tabs)/index.tsx)`
