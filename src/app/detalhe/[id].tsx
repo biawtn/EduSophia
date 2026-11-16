@@ -2,7 +2,13 @@ import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { alterarStatus, buscarMateriaPorId, initDb, type Materia } from '@/database/db';
+import {
+  alterarStatus,
+  buscarMateriaPorId,
+  excluirMateria,
+  initDb,
+  type Materia,
+} from '@/database/db';
 
 type Bloco = {
   titulo: string;
@@ -24,7 +30,7 @@ export default function DetalheScreen() {
       async function carregar() {
         try {
           await initDb();
-        
+          // SELECT ... WHERE id = ? (função buscarMateriaPorId em database/db.ts)
           setMateria(await buscarMateriaPorId(Number(id)));
         } catch {
           Alert.alert('Erro', 'Não foi possível carregar os detalhes.');
@@ -45,6 +51,30 @@ export default function DetalheScreen() {
     }
   }
 
+  function editar() {
+    if (!materia) return;
+    router.push({ pathname: '/adicionar', params: { id: String(materia.id) } });
+  }
+
+  function confirmarExclusao() {
+    if (!materia) return;
+    Alert.alert('Excluir matéria', `Deseja excluir "${materia.titulo}"?`, [
+      { text: 'Cancelar', style: 'cancel' },
+      {
+        text: 'Excluir',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await excluirMateria(materia.id);
+            voltar();
+          } catch {
+            Alert.alert('Erro', 'Não foi possível excluir. Tente novamente.');
+          }
+        },
+      },
+    ]);
+  }
+
   function voltar() {
     if (router.canGoBack()) {
       router.back();
@@ -52,6 +82,8 @@ export default function DetalheScreen() {
       router.replace('/');
     }
   }
+
+  // carregando
   if (materia === undefined) {
     return (
       <View style={styles.container}>
@@ -61,6 +93,7 @@ export default function DetalheScreen() {
     );
   }
 
+  // não encontrada
   if (materia === null) {
     return (
       <View style={styles.container}>
@@ -117,6 +150,14 @@ export default function DetalheScreen() {
         <Text style={styles.statusButtonText}>
           {concluida ? 'Desmarcar como concluída' : 'Marcar como concluída'}
         </Text>
+      </Pressable>
+
+      <Pressable style={styles.backButton} onPress={editar}>
+        <Text style={styles.backButtonText}>Editar</Text>
+      </Pressable>
+
+      <Pressable style={styles.deleteButton} onPress={confirmarExclusao}>
+        <Text style={styles.deleteButtonText}>Excluir</Text>
       </Pressable>
 
       <Pressable style={styles.backButton} onPress={voltar}>
@@ -218,5 +259,17 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontWeight: '600',
     color: '#173A66',
+  },
+  deleteButton: {
+    borderWidth: 1.5,
+    borderColor: '#D64545',
+    borderRadius: 12,
+    padding: 14,
+    alignItems: 'center',
+    marginTop: 12,
+  },
+  deleteButtonText: {
+    fontWeight: '600',
+    color: '#D64545',
   },
 });

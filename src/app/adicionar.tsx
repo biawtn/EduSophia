@@ -1,38 +1,72 @@
-import { router } from 'expo-router';
-import { useState } from 'react';
+
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 import {
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from 'react-native';
 
-import { adicionarMateria } from '@/storage/materias';
+import { atualizarMateria, buscarMateriaPorId, initDb, inserirMateria } from '@/database/db';
 
 export default function AdicionarScreen() {
+  const { id } = useLocalSearchParams<{ id?: string }>();
+  const editando = !!id;
+
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [erro, setErro] = useState('');
+  const [salvando, setSalvando] = useState(false);
+
+
+  useEffect(() => {
+    if (!id) return;
+    (async () => {
+      try {
+        await initDb();
+        const m = await buscarMateriaPorId(Number(id));
+        if (m) {
+          setTitulo(m.titulo);
+          setDescricao(m.descricao ?? '');
+        }
+      } catch {
+        Alert.alert('Erro', 'Não foi possível carregar a matéria para edição.');
+      }
+    })();
+  }, [id]);
 
   async function salvar() {
-
     if (titulo.trim() === '') {
       setErro('Informe o nome da matéria.');
       return;
     }
 
-    await adicionarMateria(titulo, descricao);
-    router.back(); 
+    try {
+      setSalvando(true);
+      await initDb();
+      if (editando) {
+        await atualizarMateria(Number(id), titulo.trim(), descricao.trim());
+      } else {
+        await inserirMateria(titulo.trim(), descricao.trim());
+      }
+      router.back();
+    } catch {
+      Alert.alert('Erro', 'Não foi possível salvar. Tente novamente.');
+    } finally {
+      setSalvando(false);
+    }
   }
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Text style={styles.header}>Nova matéria</Text>
+      <Text style={styles.header}>{editando ? 'Editar matéria' : 'Nova matéria'}</Text>
 
       <View style={styles.campo}>
         <Text style={styles.label}>Matéria *</Text>
@@ -62,8 +96,8 @@ export default function AdicionarScreen() {
       </View>
 
       <View style={styles.botoes}>
-        <Pressable style={styles.saveButton} onPress={salvar}>
-          <Text style={styles.saveButtonText}>Salvar</Text>
+        <Pressable style={styles.saveButton} onPress={salvar} disabled={salvando}>
+          <Text style={styles.saveButtonText}>{salvando ? 'Salvando...' : 'Salvar'}</Text>
         </Pressable>
 
         <Pressable style={styles.backButton} onPress={() => router.back()}>
