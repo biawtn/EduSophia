@@ -65,3 +65,9 @@ export async function excluirMateria(id: number): Promise<void> {
   const db = await getDb();
   await db.runAsync('DELETE FROM materias WHERE id = ?', [id]);
 }
+
+export async function buscarMateriaPorId(id: number): Promise<Materia | null> {
+  const db = await getDb();
+  const linha = await db.getFirstAsync<Materia>('SELECT * FROM materias WHERE id = ?', [id]);
+  return linha ?? null;
+}

@@ -1,8 +1,8 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { alternarConclusao, carregarMaterias, type Materia } from '@/storage/materias';
+import { alterarStatus, buscarMateriaPorId, initDb, type Materia } from '@/database/db';
 
 type Bloco = {
   titulo: string;
@@ -17,20 +17,32 @@ const BLOCOS_MATEMATICA: Bloco[] = [
 
 export default function DetalheScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const [materia, setMateria] = useState<Materia | null>(null);
-
+  const [materia, setMateria] = useState<Materia | null | undefined>(undefined);
 
   useFocusEffect(
     useCallback(() => {
-      carregarMaterias().then((lista) => {
-        setMateria(lista.find((m) => m.id === id) ?? null);
-      });
+      async function carregar() {
+        try {
+          await initDb();
+        
+          setMateria(await buscarMateriaPorId(Number(id)));
+        } catch {
+          Alert.alert('Erro', 'Não foi possível carregar os detalhes.');
+          setMateria(null);
+        }
+      }
+      carregar();
     }, [id])
   );
 
   async function marcarStatus() {
-    await alternarConclusao(id);
-    voltar(); 
+    if (!materia) return;
+    try {
+      await alterarStatus(materia.id, materia.status === 'concluido' ? 'pendente' : 'concluido');
+      voltar();
+    } catch {
+      Alert.alert('Erro', 'Não foi possível atualizar o status.');
+    }
   }
 
   function voltar() {
@@ -40,10 +52,7 @@ export default function DetalheScreen() {
       router.replace('/');
     }
   }
-
-  const blocos = id === '1' ? BLOCOS_MATEMATICA : [];
-
-  if (materia === null) {
+  if (materia === undefined) {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Meus estudos</Text>
@@ -52,26 +61,43 @@ export default function DetalheScreen() {
     );
   }
 
+  if (materia === null) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.header}>Meus estudos</Text>
+        <Text style={styles.textSecondary}>📚 Matéria não encontrada.</Text>
+        <Pressable style={styles.backButton} onPress={voltar}>
+          <Text style={styles.backButtonText}>Voltar</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  const concluida = materia.status === 'concluido';
+  const blocos = materia.titulo.trim().toLowerCase() === 'matemática' ? BLOCOS_MATEMATICA : [];
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Meus estudos</Text>
 
       <Text style={styles.materiaTitle}>Matéria: {materia.titulo}</Text>
 
-      <View style={[styles.badge, materia.concluida ? styles.badgeOk : styles.badgePendente]}>
+      <View style={[styles.badge, concluida ? styles.badgeOk : styles.badgePendente]}>
         <Text
           style={[
             styles.badgeTexto,
-            materia.concluida ? styles.badgeTextoOk : styles.badgeTextoPendente,
+            concluida ? styles.badgeTextoOk : styles.badgeTextoPendente,
           ]}>
-          {materia.concluida ? '✓ Concluída' : 'Pendente'}
+          {concluida ? '✓ Concluída' : 'Pendente'}
         </Text>
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {blocos.length === 0 ? (
           <Text style={styles.textSecondary}>
-            Ainda não há conteúdo cadastrado para esta matéria.
+            {materia.descricao
+              ? materia.descricao
+              : 'Ainda não há conteúdo cadastrado para esta matéria.'}
           </Text>
         ) : (
           blocos.map((bloco) => (
@@ -89,7 +115,7 @@ export default function DetalheScreen() {
 
       <Pressable style={styles.statusButton} onPress={marcarStatus}>
         <Text style={styles.statusButtonText}>
-          {materia.concluida ? 'Desmarcar como concluída' : 'Marcar como concluída'}
+          {concluida ? 'Desmarcar como concluída' : 'Marcar como concluída'}
         </Text>
       </Pressable>
 
