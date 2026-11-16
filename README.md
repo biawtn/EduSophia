@@ -5,14 +5,14 @@
 
 [![CI](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-MB-green)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
 
-**MB** — Muito bom · **76%** (76/100 pontos) · atualizado em 2026-11-16 11:53
+**MB** — Muito bom · **85%** (85/100 pontos) · atualizado em 2026-11-16 12:01
 
 | Fase | Pontos |
 |------|--------|
 | Fase 1 — Estrutura | 10/10 |
 | Fase 2 — AsyncStorage | 15/15 |
 | Fase 3 — SQLite | 30/30 |
-| Fase 4 — Versão Final (UX e Dispositivo) | 21/45 |
+| Fase 4 — Versão Final (UX e Dispositivo) | 30/45 |
 
 Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
 <!-- PAM-CI-NOTA-FIM -->
