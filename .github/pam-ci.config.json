@@ -7,5 +7,5 @@
   "detalhe": "src/app/detalhe/[id].tsx",
   "dados": [],
   "storage": "src/storage/materias.ts",
-  "sqlite": ""
+  "sqlite": "src/database/db.ts"
 }
