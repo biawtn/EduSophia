@@ -5,7 +5,7 @@
 
 [![CI](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-R-orange)](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml)
 
-**R** — Regular · **34%** (34/100 pontos) · atualizado em 2026-11-10 01:28
+**R** — Regular · **47%** (26/55 pontos) · atualizado em 2026-11-16 10:54
 
 | Fase | Pontos |
 |------|--------|
@@ -60,3 +60,16 @@ Bloco de notas voltado para organização dos estudos — anotações, contagem 
 
 > [!TIP]
 > Material completo do curso: [PAM I](https://etec-bento-quirino.github.io/Programacao-Aplicativos-Moveis-I/)
+
+
+---
+
+## Colaboração por integrante
+
+> *Excluídos: commits do professor Jackson Sá (wendelmax), `github-actions[bot]` e `dependabot[bot]`. Contagem com base em `git log --no-merges`.*
+
+| # | Integrante | Commits | Participação |
+|---|------------|---------|--------------|
+| 1 | Bianca Noronha | 4 | 100.0% ████████████████████ |
+
+**Total de commits considerados:** 4
