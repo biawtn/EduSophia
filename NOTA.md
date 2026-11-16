@@ -6,7 +6,7 @@
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=MB&color=green)
 
-**Nota atual: MB** · 76% (76/100 pontos) · rodada de 2026-11-16 11:38:54 · commit `5a72092`
+**Nota atual: MB** · 76% (76/100 pontos) · rodada de 2026-11-16 11:53:13 · commit `b738cd3`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 
@@ -50,13 +50,13 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+1 pts)** Storage grava dados (AsyncStorage.setItem ou INSERT) — `src/storage/materias.ts`
 - [x] **(+1 pts)** Existe função de CARREGAR a lista (carregar/load/listar/get) — `src/app/(tabs)/index.tsx`
 - [x] **(+1 pts)** Existe função de ADICIONAR/CADASTRAR (adicionar/salvar/inserir/create) — `src/app/(tabs)/index.tsx`
-- [x] **(+1 pts)** Existe busca por id (buscar/find/getItem/getFirst) — `src/app/detalhe/[id].tsx`
-- [x] **(+1 pts)** Existe função de EXCLUIR/remover — `src/database/db.ts`
+- [x] **(+1 pts)** Existe busca por id (buscar/find/getItem/getFirst) — `src/app/adicionar.tsx`
+- [x] **(+1 pts)** Existe função de EXCLUIR/remover — `src/app/detalhe/[id].tsx`
 - [x] **(+1 pts)** Formulário lê entradas com TextInput — `src/app/adicionar.tsx`
 - [x] **(+1 pts)** Formulário salva chamando adicionar/salvar — `src/app/adicionar.tsx`
 - [x] **(+1 pts)** Lista é alimentada a partir do storage/banco — `src/app/(tabs)/index.tsx`
 - [x] **(+1 pts)** Tela de detalhe usa busca/dados do storage/banco — `src/app/detalhe/[id].tsx`
-- [x] **(+1 pts)** Exclusão usa confirmação (Alert.alert) — `src/screens/MateriasScreen.tsx`
+- [x] **(+1 pts)** Exclusão usa confirmação (Alert.alert) — `src/app/detalhe/[id].tsx`
 - [x] **(+1 pts)** Dados iniciais/seed são gravados na 1ª execução — `src/storage/materias.ts`
 - [x] **(+1 pts)** Formulário valida campos (trim/length/vazio) — `src/app/adicionar.tsx`
 
@@ -70,12 +70,12 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [x] **(+2 pts)** Consulta com SELECT — `src/database/db.ts`
 - [x] **(+2 pts)** Atualiza com UPDATE — `src/database/db.ts`
 - [x] **(+2 pts)** Exclui com DELETE FROM — `src/database/db.ts`
-- [x] **(+2 pts)** Usa filtros com WHERE — `src/database/db.ts`
+- [x] **(+2 pts)** Usa filtros com WHERE — `src/app/detalhe/[id].tsx`
 - [x] **(+2 pts)** Banco aberto com openDatabaseAsync/openDatabaseSync/openDatabase — `src/database/db.ts`
 - [x] **(+2 pts)** Tela de lista carrega dados do banco — `src/app/(tabs)/index.tsx`
 - [x] **(+2 pts)** Formulário salva no banco (INSERT/runAsync/runSync) — `src/app/adicionar.tsx`
 - [x] **(+2 pts)** Detalhe busca no banco com WHERE/SELECT — `src/app/detalhe/[id].tsx`
-- [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `src/app/detalhe/[id].tsx`
+- [x] **(+2 pts)** Usa async/await corretamente (mais de 2 await) — `src/app/(tabs)/index.tsx`
 - [x] **(+2 pts)** Banco possui dados iniciais (seed inserido em SQL) — `src/database/db.ts`
 
 ### Fase 4 — Versão Final: SQLite Exclusivo, UX, Dispositivo e Entrega (21/45 pts · peso 3x)
@@ -88,10 +88,10 @@ Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–7
 - [ ] **(+3 pts)** [Teste Funcional SQLite] Fluxo de EXCLUIR remove registro do banco (DELETE FROM) — `FALTA função de excluir (DELETE FROM) removendo registro real no SQLite`
 - [ ] **(+3 pts)** Recurso do dispositivo: pacote nativo no package.json (notifications, image-picker, location) ou justificativa — `FALTA instalar expo-notifications / expo-image-picker / expo-location (ou justificar no README)`
 - [ ] **(+3 pts)** Recurso do dispositivo: uso da API nativa no código (notificação, foto ou GPS) ou justificativa — `FALTA integrar recurso do aparelho no código (Aulas 08, 09 ou 10)`
-- [x] **(+3 pts)** UX: Loading ao carregar a lista do SQLite (ActivityIndicator + estado loading/carregando) — `src/app/detalhe/[id].tsx (src/screens/MateriasScreen.tsx)`
+- [x] **(+3 pts)** UX: Loading ao carregar a lista do SQLite (ActivityIndicator + estado loading/carregando) — `src/app/(tabs)/index.tsx (src/app/(tabs)/index.tsx)`
 - [x] **(+3 pts)** UX: Empty State quando não houver registros (mensagem amigável + ícone/emoji/ilustração) — `src/app/(tabs)/index.tsx`
-- [x] **(+3 pts)** UX: Mensagem de erro amigável se falhar ao CARREGAR dados (try/catch com feedback) — `src/app/detalhe/[id].tsx`
-- [x] **(+3 pts)** UX: Mensagem de erro amigável e validação se falhar ao SALVAR/EXCLUIR (try/catch + Alert/.trim) — `src/app/detalhe/[id].tsx + validação .trim()`
+- [x] **(+3 pts)** UX: Mensagem de erro amigável se falhar ao CARREGAR dados (try/catch com feedback) — `src/app/(tabs)/index.tsx`
+- [x] **(+3 pts)** UX: Mensagem de erro amigável e validação se falhar ao SALVAR/EXCLUIR (try/catch + Alert/.trim) — `src/app/(tabs)/index.tsx + validação .trim()`
 - [x] **(+3 pts)** Organização do código: separação em pastas por responsabilidade (screens/app, database/data, components) — `pastas: app, components, constants, database, hooks, screens, storage`
 - [x] **(+3 pts)** Interface consistente: FlatList (keyExtractor + renderItem) e estilização StyleSheet.create — `src/app/(tabs)/index.tsx (13 arquivos com StyleSheet)`
 - [ ] **(+3 pts)** Entrega: repositório limpo (.gitignore sem node_modules) e README com instruções/Expo Go/APK — `FALTA .gitignore ou documentar como rodar/testar (Expo Go/APK) no README.md`
