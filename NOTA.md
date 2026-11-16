@@ -1,12 +1,12 @@
 > Este arquivo e **gerado automaticamente** pelo CI a cada push na branch `main`.
 > Nao edite a mao: o proximo commit do CI sobrescreve. Para ver a rodada no Actions:
-> https://github.com/ORG/REPO/actions/workflows/pam-ci.yml
+> https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml
 
 ## Nota PAM I — Educa+ (matérias de estudo)
 
 ![](https://img.shields.io/static/v1?label=Nota%20PAM%20I&message=R&color=orange)
 
-**Nota atual: R** · 34% (34/100 pontos) · rodada de 2026-11-10 01:28:36 · commit `local`
+**Nota atual: R** · 34% (34/100 pontos) · rodada de 2026-11-16 10:59:27 · commit `774d002`
 
 Legenda: I = Insuficiente (0–25%) · R = Regular (25–50%) · B = Bom (50–75%) · MB = Muito bom (75–100%)
 

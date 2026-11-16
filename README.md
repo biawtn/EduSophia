@@ -3,9 +3,9 @@
 <!-- PAM-CI-NOTA-INICIO -->
 ### Nota atual (automática) — Educa+ (matérias de estudo)
 
-[![CI](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-R-orange)](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml)
+[![CI](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml/badge.svg)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml) [![Nota](https://img.shields.io/badge/Nota%20PAM%20I-R-orange)](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
 
-**R** — Regular · **47%** (26/55 pontos) · atualizado em 2026-11-16 10:54
+**R** — Regular · **34%** (34/100 pontos) · atualizado em 2026-11-16 10:59
 
 | Fase | Pontos |
 |------|--------|
@@ -14,7 +14,7 @@
 | Fase 3 — SQLite | 2/30 |
 | Fase 4 — Versão Final (UX e Dispositivo) | 9/45 |
 
-Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/ORG/REPO/actions/workflows/pam-ci.yml)
+Checklist item a item em [NOTA.md](NOTA.md) · [ver a rodada mais recente no Actions](https://github.com/biawtn/EduSophia/actions/workflows/pam-ci.yml)
 <!-- PAM-CI-NOTA-FIM -->
 
 Educa+ — Projeto PAM I
