@@ -1,4 +1,5 @@
 # EduSophia
+Apresentação Slide: https://canva.link/z1fzcn2er0xy7jn
 
 <!-- PAM-CI-NOTA-INICIO -->
 ### Nota atual (automática) — Educa+ (matérias de estudo)
